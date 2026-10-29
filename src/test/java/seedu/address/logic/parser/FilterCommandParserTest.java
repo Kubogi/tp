@@ -130,7 +130,9 @@ public class FilterCommandParserTest {
         assertParseFailure(parser, "/squad Team A", expectedMessage);
         assertParseFailure(parser, "/availability true", expectedMessage);
         assertParseFailure(parser, "availability/true", expectedMessage);
-        assertParseFailure(parser, "position/Goalkeeper", expectedMessage);
+        assertParseSuccess(parser, "position/Goalkeeper", new FilterCommand(new MatchesFilterCriteriaPredicate(
+                Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.of(new Position("Goalkeeper")))));
     }
 
     private FilterCommand command(String squadName, String availability,
